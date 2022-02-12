@@ -10,10 +10,6 @@ const saveBtn = document.querySelector("#jsSave");
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
 
-canvas.width = canvas.offsetWidth;
-canvas.heigh = canvas.offsetHeight;
-
-
 /**
  *  canvas를 pixel을 다룰 수 있는 element를 만들기 때문에
  *  이 element에 width와 heigh를 줘야 한다.
@@ -27,11 +23,11 @@ ctx.fillRect(0,0,CANVAS_SIZE,CANVAS_SIZE);
 ctx.strokeStyle = INITIAL_COLOR;
 //lineWith는 선의 두께를 조절한다.
 //canvas 안의 픽셀을 다룬다.
-ctx.lineWidth = 2.5;
+ctx.lineWidth = 2.0;
 ctx.fillStyle = INITIAL_COLOR;
 
 let painting=false;
-let filling = false;
+let filling=false;
 
 function stopPainting(){
     painting = false;
@@ -40,21 +36,23 @@ function stopPainting(){
 function startPating(){
     painting = true;
 }
-
+//canvas 위에서 마우스 위치 확인
 function onMouseMove(event){
     const x = event.offsetX;
     const y = event.offsetY;
+    
     if(!painting){
         //경로 생성
         ctx.beginPath();
         //선 시작 좌표
-        ctx.moveTo(x,y);
+        ctx.moveTo(x, y);
     }else{
         //선 끝 좌표
-        ctx.lineTo(x,y);
+        ctx.lineTo(x, y);
         //선 그리기
         ctx.stroke();
     }
+    
 }
 
 function handleColorClick(event){
