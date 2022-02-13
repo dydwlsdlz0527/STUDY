@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // React.createElement의 인자값은 반드시 HTML Tag와 같은 이름을 사용한다.-->
+    const root = document.querySelector("#root");
+    //두 번째 인자값에는 첫 번째 인자값의 property를 설정한다.
+    function Title () {
+        return( 
+            <h3 id="title" onMouseEnter={() => 
+                console.log("mouse enter")
+                }>
+                Hello I'm a span
+            </h3>
+        );
+    }
+        /* const h3 = (
+        <h3 id="title" onMouseEnter={() => 
+            console.log("mouse enter")
+            }>
+            Hello I'm a span
+        </h3>
+        ); */
+       /*  const h3 = React.createElement(
+           "h3",
+            {
+                id: "title",
+                onMouseEnter:() => console.log("mouse enter")
+            },
+            "Hello I'm a span"
+            ); 
+        */
+        const Btn = () => (
+            //버튼 react element를 반환
+            <button style={
+                {backgroundColor:"tomato"}
+            } 
+            onClick={() =>
+                console.log("i'm clicked")
+            }>
+                Click me
+            </button>
+            );
+    /* const btn = React.createElement(
+        "button",
+        {
+        onClick:() => console.log("i'm clicked"),
+        style: {
+                backgroundColor: "tomato",
+            },
+        },
+        "Click me"
+        ); */
+
+    //컴포넌트의 첫문자는 대문자여야 한다.
+    //만약 소문자면 React와 JSX는 HTML 태그라고 인식을 한다.
+    /* const Container = (
+    <div>
+        <Title/>
+        <Btn/>
+    </div>
+    ); 
+    ReactDOM.render(Container,root);
+    */
+
+    //컴포넌트를 다른 컴포넌트에 넣는 방법
+    const Container = () => (
+    <div>
+        <Title/>
+        <Btn/>
+    </div>
+    );
+    ReactDOM.render(<Container/>,root);
+    
+</script>
+</html>
