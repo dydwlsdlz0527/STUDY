@@ -21,9 +21,13 @@
             onMouseEnter:() => console.log("mouse enter")
         },
         "Hello I'm a span");
-    const btn = React.createElement("button",
+    const btn = React.createElement(
+        "button",
         {
-        onClick:() => console.log("i'm clicked")
+        onClick:() => console.log("i'm clicked"),
+        style: {
+                backgroundColor: "tomato",
+            },
         },
         "Click me");
     //span을 먼저 그 다음 button을 랜더링
