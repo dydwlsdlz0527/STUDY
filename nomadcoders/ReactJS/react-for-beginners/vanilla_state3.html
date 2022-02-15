@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // React.createElement의 인자값은 반드시 HTML Tag와 같은 이름을 사용한다.-->
+    const root = document.querySelector("#root");
+    function App(){
+        //useState는 array를  제공하는데 첫번째 인자값은 현재값을 의미하고
+        //두 번째 element는 현재 값을 변경해주는 함수가 들어간다.
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) =>{
+            setAmount(event.target.value);
+        };
+        const reset = () => {
+            setAmount(0);
+        }
+        const onFlip = () => {
+            reset();
+            setInverted((current) => !current);
+        };
+        return(
+            <div>
+                <h1 className="hi">Super Converter</h1>
+                <div>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input value={inverted ? amount*60 : amount} id="minutes" placeholder="Minutes" 
+                            type="number" onChange={onChange} disabled={inverted}/>
+                </div>
+                <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input value={inverted ? amount : Math.round(amount/60)} id="hours" placeholder="Hours" 
+                    type="number" onChange={onChange} disabled={!inverted}/>
+                </div>
+                <div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
+                </div>
+            </div>
+        ); 
+    };
+    //최초 호출될 때 Container 컴포넌트를 root div에 담아준다.
+    ReactDOM.render(<App/>,root);
+</script>
+</html>
