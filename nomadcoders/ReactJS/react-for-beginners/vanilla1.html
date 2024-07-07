@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.getElementById("root");
+    //괄호 안에는  생성하고자 하는 태그를 넣어줘야 한다.
+    //두 번째 인자값으로 태그의 property를 줄 수 있다.
+    //세 번째 인자값으로 태그의 내용을 입력한다.
+    //const span = React.createElement("span", {id:"sexy-span", style:{color:"red"}},"HELLO I'M A SPAN");
+    const span = React.createElement(
+        "span",
+        null,
+        "Total clicks : 0"
+        );
+    let counter = 0;
+    const btn = React.createElement(
+        "button",
+        {
+            onClick: () => {
+                counter = counter + 1;
+                span.innerText =  `Total clicks : ${counter}`;
+            }
+        },
+        "Click me"
+        );
+    //두 개 이상을 렌더링 할 때에는 []을 사용한다.
+    const container = React.createElement("div",null,[span,btn]);
+    ReactDOM.render(container, root);
+</script>
+</html>
+
